@@ -13,10 +13,10 @@ backgroundColor :: Color
 backgroundColor = white
 
 framesPerSecond :: Int
-framesPerSecond = 1
+framesPerSecond = 60
 
 main :: IO ()
 main = do
     gen <- newStdGen
-    let grid = generateGrid 10 5 gen :: Grid Double
-    simulate display backgroundColor framesPerSecond grid renderGrid (\_ -> stepGrid)
+    let grid = generateGrid 2 500 gen :: Grid Double Float
+    simulate display backgroundColor framesPerSecond grid renderGrid (const stepGrid)

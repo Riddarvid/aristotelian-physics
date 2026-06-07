@@ -7,18 +7,18 @@ import Graphics.Gloss (Picture, pictures, rectangleSolid, translate, color, Colo
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import qualified Data.List.NonEmpty as NE
 
-renderGrid :: (Fractional a, Real a) => Grid a -> Picture
+renderGrid :: (Fractional a, Real a) => Grid a b -> Picture
 renderGrid (Grid columns) = pictures $ zipWith renderColumns [0 ..] columns
 
-renderColumns :: (Fractional a, Real a) => Int -> [Cell a] -> Picture
+renderColumns :: (Fractional a, Real a) => Int -> [Cell a b] -> Picture
 renderColumns x column = pictures $ zipWith (renderCell x) [0 ..] column
 
-renderCell :: (Fractional a, Real a) => Int -> Int -> Cell a -> Picture
+renderCell :: (Fractional a, Real a) => Int -> Int -> Cell a b -> Picture
 renderCell x y cell = color (mixCellColor cell)
     $ translate (fromIntegral x) (fromIntegral y)
     $ rectangleSolid 1 1
 
-mixCellColor :: (Fractional a, Real a) => Cell a -> Color
+mixCellColor :: (Fractional a, Real a) => Cell a b -> Color
 mixCellColor cell = mixColorList colorIntensities
     where
         colorIntensities = NE.fromList [

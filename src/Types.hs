@@ -5,14 +5,15 @@ module Types (
 ) where
 
 -- Grid represents a list of columns, not a list of rows
-newtype Grid a = Grid [[Cell a]] 
+newtype Grid a b = Grid [[Cell a b]] 
     deriving (Show)
 
-data Cell a = Cell {
+data Cell a b = Cell {
     cEarthPart :: a,
     cWaterPart :: a,
     cAirPart :: a,
-    cFirePart :: a
+    cFirePart :: a,
+    cWaitTime :: b
 } 
     deriving (Show) 
 
